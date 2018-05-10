@@ -221,9 +221,9 @@ func set_wallpaper(de, pic string) {
   }
 
   if de == "gnome" {
-    _, err := exec.Command("/usr/bin/gconftool-2", "-s", "-t", "string", "/desktop/gnome/background/picture_filename", pic).Output()
+    _, err := exec.Command("gsettings", "set", "org.gnome.desktop.background", "picture-uri", pic).Output()
     check(err)
-    _, err1 := exec.Command("/usr/bin/gconftool-2", "-s", "-t", "string", "/desktop/gnome/background/picture_options", picOpts).Output()
+    _, err1 := exec.Command("gsettings", "set", "org.gnome.desktop.background", "picture-options", picOpts).Output()
     check(err1)
   }
 
@@ -366,7 +366,7 @@ func main() {
   dir := "/home/" + os.Getenv("LOGNAME") + "/Pictures/Bing"
 
   if size == 1 {
-    mkt = "zh-CN"
+    mkt = "en-US"
     loop = true
   }
 
@@ -401,10 +401,12 @@ func main() {
     os.Exit(0)
   }()
 
+  first_time := true
   for {
-    if time.Now().Format("2006-01-02") != t {
+    if time.Now().Format("2006-01-02") != t || first_time == true {
       pic := download_pictures(xml, dir)
       set_wallpaper(de, pic)
+      first_time = false
     } else {
       if !loop {
         break
