@@ -4,6 +4,8 @@ It sets Bing.com wallpaper of the Day as your Linux Desktop
 
 supports GNOME (2 and 3), KDE 4 / Plasma 5, XFCE4, MATE, Cinnamon, LXDE(LXQT), as well fallback to feh.
 
+**UPDATED:** Now support Ubuntu 18.04
+
 ## Usage
 
 Install [golang](https://golang.org).
