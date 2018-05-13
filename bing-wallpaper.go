@@ -220,7 +220,7 @@ func set_wallpaper(de, pic string) {
     check(err1)
   }
 
-  if de == "ubuntu:gnome" {
+  if de == "ubuntu:gnome" || de == "unity" {
 	  _, err := exec.Command("gsettings", "set", "org.gnome.desktop.background", "picture-uri", "file://" + pic).Output()
     check(err)
     _, err1 := exec.Command("gsettings", "set", "org.gnome.desktop.background", "picture-options", picOpts).Output()
